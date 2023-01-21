@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class FeignConfig {
     @Bean
-    fun feignLoggerLevel(): Logger.Level? {
+    fun feignLoggerLevel(): Logger.Level {
         return Logger.Level.BASIC
     }
 }
