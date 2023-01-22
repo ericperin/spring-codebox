@@ -1,8 +1,26 @@
 version: "3.9"
 services:
   wiremock:
+    container_name: "wiremock"
     image: "wiremock/wiremock:2.32.0"
     ports:
       - "8081:8080"
     volumes:
       - "./wiremock/example-api:/home/wiremock"
+
+  grafana-loki:
+    container_name: "loki"
+    image: "grafana/loki:latest"
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki/config:/mnt/config
+
+  grafana:
+    container_name: "grafana"
+    image: "grafana/grafana:latest"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - grafana-loki
