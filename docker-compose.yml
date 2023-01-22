@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   wiremock:
     container_name: "wiremock"
@@ -14,8 +15,12 @@ services:
     command: -config.file=/etc/loki/local-config.yaml
     ports:
       - "3100:3100"
+
+  promtail:
+    image: "grafana/promtail:latest"
     volumes:
-      - ./loki/config:/mnt/config
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml
 
   grafana:
     container_name: "grafana"
@@ -24,3 +29,26 @@ services:
       - "3000:3000"
     depends_on:
       - grafana-loki
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy 
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        EOF
+        /run.sh
