@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/wiremock"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200,
+        "jsonBody": {
+          "status": "200",
+          "message": "Hello world"
+        }
+      }
+    }
+  ]
+}
