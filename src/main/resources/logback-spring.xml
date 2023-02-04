@@ -12,7 +12,7 @@
                 <pattern>app=${appName},host=${HOSTNAME},traceID=%X{traceId:-NONE},level=%level,thread=%thread</pattern>
             </label>
             <message>
-                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <pattern>c=%logger{20} | m="%m"</pattern>
             </message>
             <sortByTime>true</sortByTime>
         </format>
