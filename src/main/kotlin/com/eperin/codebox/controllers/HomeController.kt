@@ -31,7 +31,7 @@ class HomeController {
     @GetMapping("/example")
     fun hello(@RequestParam(value = "name", defaultValue = "World") name: String?): String? {
         val result = exampleService?.get()
-        logger.info("Log to INFO {}", result)
+        logger.info("Log: {} - {}", result, name)
         return String.format("Hello %s!", name)
     }
 }
