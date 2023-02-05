@@ -1,7 +1,8 @@
 package com.eperin.codebox.controllers
 
+import com.eperin.codebox.services.PlaceHolderService
+import com.eperin.codebox.services.ProductService
 import com.eperin.codebox.services.UserService
-import com.eperin.codebox.services.dtos.Result
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,11 +17,31 @@ class UsersController {
     @Autowired
     private val userService: UserService? = null
 
-    @GetMapping
-    fun getAll(): ResponseEntity<List<Result>> {
-        val result = userService!!.getAll()
-        logger.info("Success!")
+    @Autowired
+    private val productService: ProductService? = null
 
-        return ResponseEntity.ok(result.results)
+    @Autowired
+    private val placeHolderService: PlaceHolderService? = null
+
+    @GetMapping
+    fun getAll(): Any {
+        return try {
+            val users = userService!!.getAll()
+            val products = productService!!.getAll()
+            val places = placeHolderService!!.getAll()
+            logger.info(
+                "{} users, {} products and {} places",
+                users.results.count(),
+                products.products.count(),
+                places.count()
+            )
+
+            ResponseEntity.ok(users.results)
+
+        } catch (e: Exception) {
+            logger.error("Ops", e)
+
+            ResponseEntity.internalServerError()
+        }
     }
 }
