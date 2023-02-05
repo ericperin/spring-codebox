@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("home")
+@RequestMapping("adresses")
 class HomeController {
     var logger: Logger = LoggerFactory.getLogger(HomeController::class.java)
 
@@ -19,14 +19,14 @@ class HomeController {
     @Autowired
     private val exampleService: ExampleService? = null
 
-    @GetMapping("/cep/{cep}")
+    @GetMapping("{cep}")
     fun getCep(@PathVariable cep: String?): ResponseEntity<AddressDto?>? {
         val endereco: AddressDto? = cepService?.buscaEnderecoPorCep(cep)
         return if (endereco != null) ResponseEntity.ok().body<AddressDto?>(endereco) else ResponseEntity.notFound()
             .build<AddressDto>()
     }
 
-    @GetMapping("/example")
+    @GetMapping
     fun hello(@RequestParam(value = "name", defaultValue = "World") name: String?): String? {
         val result = exampleService?.get()
         logger.info("deu bom {} - {}", result, name)
@@ -34,12 +34,12 @@ class HomeController {
     }
 
     @GetMapping("/error/{msg}")
-    fun error(@PathVariable msg: String?): String? {
+    fun error(@PathVariable msg: String?): ResponseEntity.BodyBuilder {
         try {
             throw Exception("Ops")
         } catch (e: Exception){
             logger.error("deu ruim {}", msg, e)
         }
-        return String.format("Hello %s!", msg)
+        return ResponseEntity.ok()
     }
 }
