@@ -11,7 +11,7 @@ Start project
 
 ## Localhost
 * [Grafana](http://localhost:3000)
-* [Example](http://localhost:6543/example?name=oi)
+* [Example](http://localhost:6543/users)
 * [Swagger](http://localhost:6543/swagger.html)
 
 ## Support
