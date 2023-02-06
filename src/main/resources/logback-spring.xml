@@ -9,11 +9,11 @@
         </http>
         <format>
             <label>
-                <pattern>app=${appName},host=${HOSTNAME},traceID=%X{traceId:-NONE},level=%level,thread=%thread</pattern>
+                <pattern>app=${appName},host=${HOSTNAME},traceID=%X{traceId:-NONE},level=%level</pattern>
             </label>
-            <message>
-                <pattern>c=%logger{20} t=%X{traceId:-NONE} | m="%m"</pattern>
-            </message>
+<!--            <message>-->
+<!--                <pattern>c=%logger{20} t=%X{traceId:-NONE} | m="%m"</pattern>-->
+<!--            </message>-->
             <sortByTime>true</sortByTime>
         </format>
     </appender>
