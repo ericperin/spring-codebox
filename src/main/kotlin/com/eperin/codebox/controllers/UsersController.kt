@@ -28,6 +28,7 @@ class UsersController {
         return try {
             val users = userService!!.getAll()
             val products = productService!!.getAll()
+//            Thread.sleep(Random().nextLong(10000L)) // simulates latency
             val places = placeHolderService!!.getAll()
             logger.info(
                 "{} users, {} products and {} places",
