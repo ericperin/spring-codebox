@@ -1,5 +1,6 @@
 package com.eperin.codebox.controllers
 
+import com.eperin.codebox.exceptions.NotFoundException
 import com.eperin.codebox.services.PlaceHolderService
 import com.eperin.codebox.services.ProductService
 import com.eperin.codebox.services.UserService
@@ -44,5 +45,13 @@ class UsersController {
 
             ResponseEntity.internalServerError()
         }
+    }
+
+    @GetMapping("{id}")
+    fun getById(@PathVariable id: Int): Any {
+        logger.info("Id: {}", id)
+
+        if (id == 2) throw NotFoundException("User not found")
+        return ResponseEntity.badRequest().body(null)
     }
 }
