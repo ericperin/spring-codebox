@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.eperin</groupId>
 	<artifactId>codebox</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>codebox</name>
 	<description>Codebox project for Spring Boot</description>
 	<properties>
@@ -152,6 +152,14 @@
 						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>**/configurations/**/*</exclude>
+						<exclude>**/controllers/**/*</exclude>
+						<exclude>**/dtos/**/*</exclude>
+						<exclude>**/exceptions/**/*</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
