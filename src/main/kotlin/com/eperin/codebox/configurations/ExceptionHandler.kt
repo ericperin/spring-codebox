@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class ExceptionHandler {
-    @ExceptionHandler(Exception::class)
+    @ExceptionHandler(NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     fun handleNotFound(ex: NotFoundException, request: HttpServletRequest): ErrorDto {
         return ErrorDto(
@@ -21,7 +21,7 @@ class ExceptionHandler {
         )
     }
 
-    @ExceptionHandler(Exception::class)
+    @ExceptionHandler(MethodArgumentNotValidException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     fun handleValidationError(ex: MethodArgumentNotValidException, request: HttpServletRequest): ErrorDto {
         val errors = HashMap<String, String?>()

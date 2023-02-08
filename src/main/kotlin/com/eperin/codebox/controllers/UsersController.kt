@@ -1,14 +1,17 @@
 package com.eperin.codebox.controllers
 
+import com.eperin.codebox.dtos.CreateUserDto
 import com.eperin.codebox.exceptions.NotFoundException
 import com.eperin.codebox.services.PlaceHolderService
 import com.eperin.codebox.services.ProductService
 import com.eperin.codebox.services.UserService
+import jakarta.validation.Valid
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 @RestController
 @RequestMapping("users")
@@ -53,5 +56,14 @@ class UsersController {
 
         if (id == 2) throw NotFoundException("User not found")
         return ResponseEntity.badRequest().body(null)
+    }
+
+
+    @PostMapping
+    fun create(@Valid @RequestBody model: CreateUserDto): Any {
+        logger.info("User: {}", model.name)
+        val location = URI.create(String.format("/users/%s", model.name))
+
+        return ResponseEntity.created(location).body(null)
     }
 }
