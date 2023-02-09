@@ -1,4 +1,4 @@
-package com.eperin.codebox.services
+package com.eperin.codebox.services.interfaces
 
 import com.eperin.codebox.services.dtos.DummyDto
 import io.micrometer.observation.annotation.Observed
