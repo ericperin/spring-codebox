@@ -1,8 +1,8 @@
 package com.eperin.codebox.controllers
 
-import com.eperin.codebox.services.CepService
+import com.eperin.codebox.services.interfaces.CepService
 import com.eperin.codebox.dtos.AddressDto
-import com.eperin.codebox.services.ExampleService
+import com.eperin.codebox.services.interfaces.ExampleService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

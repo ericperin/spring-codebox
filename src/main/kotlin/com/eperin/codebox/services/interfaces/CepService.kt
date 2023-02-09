@@ -1,4 +1,4 @@
-package com.eperin.codebox.services
+package com.eperin.codebox.services.interfaces
 
 import com.eperin.codebox.dtos.AddressDto
 import org.springframework.cloud.openfeign.FeignClient

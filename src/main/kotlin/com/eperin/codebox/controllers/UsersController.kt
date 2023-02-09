@@ -2,9 +2,9 @@ package com.eperin.codebox.controllers
 
 import com.eperin.codebox.dtos.CreateUserDto
 import com.eperin.codebox.exceptions.NotFoundException
-import com.eperin.codebox.services.PlaceHolderService
-import com.eperin.codebox.services.ProductService
-import com.eperin.codebox.services.UserService
+import com.eperin.codebox.services.interfaces.PlaceHolderService
+import com.eperin.codebox.services.interfaces.ProductService
+import com.eperin.codebox.services.interfaces.RandomUserService
 import jakarta.validation.Valid
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -19,7 +19,7 @@ class UsersController {
     var logger: Logger = LoggerFactory.getLogger(UsersController::class.java)
 
     @Autowired
-    private val userService: UserService? = null
+    private val userService: RandomUserService? = null
 
     @Autowired
     private val productService: ProductService? = null

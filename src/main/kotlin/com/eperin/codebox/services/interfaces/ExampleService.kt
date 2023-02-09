@@ -1,4 +1,4 @@
-package com.eperin.codebox.services
+package com.eperin.codebox.services.interfaces
 
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.RequestMapping
